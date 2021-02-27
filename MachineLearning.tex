@@ -1,0 +1,128 @@
+\documentclass{article}
+\author{Matteo Secco}
+\title{Machine Learing}
+
+\usepackage{hyperref, titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+
+\begin{document}
+\maketitle\newpage
+\tableofcontents\newpage
+
+
+\section{Supervised  Learning}
+
+\paragraph{input x} also called features or attributes
+
+\paragraph{output t} also called targets or labels
+
+\paragraph{Goal} find a good approximation for $f:x \to t$
+
+\subsection{Tasks}
+\begin{description}
+\item[Classification] t is discrete
+\item[Regression] t is continuous
+\item[Probability estimation] t is a probability
+\end{description}
+
+\subsection{When to use supervised learning?}
+\begin{itemize}
+\item Human cannot perform the task
+\item Human can perform the task but cannot explain how
+\item Task changes over time
+\item Task is user-specific
+\end{itemize}
+
+\subsection{Steps} 
+To approximate $f$ over the dataset $\mathcal{D}$
+\begin{enumerate}
+\item Define a loss function $\mathcal{L}$
+\item Choose the hypothesis space $\mathcal{H}$
+\item find $h \in \mathcal{H}$ that minimizes $\mathcal{L}$ over $\mathcal{D}$
+\end{enumerate}
+
+\subsection{Representation, Evaluation, Optimization}
+
+\paragraph{Examples of representation}
+\begin{itemize}
+\item Linear models
+\item Instance-based
+\item Decision trees
+\item Set of rules
+\item Graphical models
+\item Neural networks
+\item Gaussian Processes
+\item Support vector machines
+\item Model ensembles
+\end{itemize}
+
+\paragraph{Examples of evaluation}
+\begin{itemize}
+\item Accuracy
+\item Precision and recall
+\item Squared Error
+\item Likelihood
+\item Posterior probability
+\item Cost/Utility
+\item Margin
+\item Entropy
+\item KL divergence
+\end{itemize}
+
+\paragraph{Examples of optimization}
+\begin{itemize}
+\item Combinatorial optimization
+	\begin{itemize}
+	\item e.g.: Greedy search
+	\end{itemize}
+\item Convex optimization
+	\begin{itemize}
+	\item e.g.: Gradient descent
+	\end{itemize}
+\item Constrained optimization
+	\begin{itemize}
+	\item e.g.: Linear programming
+	\end{itemize}
+\end{itemize}
+
+\subsection{Supervised learning taxonomy}
+\begin{itemize}
+\item Parametric vs Nonparametric
+\begin{itemize}
+	\item Parametric: fixed and finite number of parameters
+	\item Nonparametric: the number of parameters depends on thetraining set
+\end{itemize}
+\item Frequentist vs Bayesian
+\begin{itemize}
+	\item Frequentist: use probabilities to model the sampling process 
+	\item Bayesian: use probability to model uncertainty about the estimate
+\end{itemize}
+\item Empirical Risk Minimization vs Structural Risk Minimization
+\begin{itemize}
+	\item Empirical Risk: Error over the training set
+	\item Structural Risk: Balance training error with model complexity
+\end{itemize}
+\item Direct vs Generative vs Discriminative 
+\begin{itemize}
+	\item Generative: learns the joint probability distribution $p(x,t)$
+	\item Discriminative: learns the conditional probability distribution $p(t|x)$
+\end{itemize}
+\end{itemize}
+
+\subsection{Learning approaches}
+
+\paragraph{Direct approach} Learn directly $f$ from $D$
+
+\paragraph{Discriminative approach}
+\begin{itemize}
+\item Model $p(t|x)$
+\item Marginalize to find ${E[t|x]=\int t\cdot p(t|x)\, dt}$
+\end{itemize}
+
+\paragraph{Generative approach}
+\begin{itemize}
+\item Model $p(x,t)$
+\item Infer $p(t|x)$ (Bayes rule)
+\item Marginalize to find ${E[t|x]=\int t\cdot p(t|x)\, dt}$
+\end{itemize}
+\end{document}
