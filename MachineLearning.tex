@@ -5,6 +5,9 @@
 \usepackage{hyperref, titlesec}
 \newcommand{\sectionbreak}{\clearpage}
 
+\usepackage{mathtools, dsfont}
+\newcommand{\R}{\mathds{R}}
+
 \begin{document}
 \maketitle\newpage
 \tableofcontents\newpage
@@ -125,4 +128,62 @@ To approximate $f$ over the dataset $\mathcal{D}$
 \item Infer $p(t|x)$ (Bayes rule)
 \item Marginalize to find ${E[t|x]=\int t\cdot p(t|x)\, dt}$
 \end{itemize}
+
+\section{Linear  regression}
+\paragraph{Regression} Learn an approximation of $f(x):X\to \R$
+\begin{itemize}
+\item How to model $f$?
+\item How to optimize the approximation?
+\item How to evaluate the approximation?
+\end{itemize}
+\paragraph{Linear regression} models $f$ with linear functions
+\begin{itemize}
+\item easy to explain
+\item analytically solvable
+\item extendable to model non-linear relations
+\item base for more sophisticated models
+\end{itemize}
+\paragraph{First linear model}
+\[
+y(\vec{x},\vec{w})=
+\underbrace{w_0}_{\text{bias parameter}}
++\sum_{j=1}^{D-1} w_jx_j
+=\vec{w}^T \cdot \underbrace{\vec{x}}_{(1,x_1,...,x_{D-1})}
+\]
+\paragraph{Sum of Squared Errors}
+Error loss for linear regression
+\[
+L(\vec{w})=\frac{1}{2} \underbrace{\sum_{n=1}^N \left[y(x_n,\vec{w})-t_n\right]^2}_{\text{Residual Sum of Squares}}
+\]
+\paragraph{Residual Sum of Squares}
+\[
+RSS(\vec{w})=\|\vec{\epsilon}\|_2^2=\sum_{i=1}^N \epsilon_i^2
+\]
+\subsection{Linear models}
+We can define more complex models modeling non linearity: the regression model must be \underline{linear in  the parameters}, but the parameters can be non linear wrt the data.
+\paragraph{Basis function} is a function $\phi$ mapping data to parameters:
+\[
+y(\vec{x},\vec{w})=
+w_0
++\sum_{j=1}^{M-1} w_j\phi_j(\vec{x})
+=\vec{w}^T \cdot \underbrace{\vec{\phi}(\vec{x})}_{(1,\phi_1(\vec{x}),...,\phi_{M-1}(\vec{x}))}
+\]
+\paragraph{Some examples of basis functions:}
+\begin{description}
+\item.[Polynomial:] $\phi_j(x)=x^j$
+\item[Gaussian:] $\phi_j(x)=e^{-\frac{(x-\mu_j)^2}{2\sigma^2}}$
+\item[Sigmoidal:] $\phi_j(x)=\frac{1}{1+e^{\frac{\mu_j-x}{\sigma}}}$
+\end{description}
+\paragraph{Least Squares}
+\[
+L(\vec{w})=\frac{1}{2}RSS(\vec{2})=\frac{1}{2}(\vec{t}-\vec{\phi}\vec{w})^T(\vec{t}-\vec{\phi}\vec{w})
+\]
+\[
+\frac{\partial L(\vec{w})}{\partial \vec{w}}=-\vec{\phi}^T(\vec{t}-\vec{\phi}\vec{w})
+\qquad
+\frac{\partial^2 L(\vec{w})}{\partial \vec{w} \partial \vec{w}^T}=\vec{\phi}^T\vec{\phi}
+\]
+\[
+\hat{\vec{w}}_{OLS}=\left(\vec{\phi}^T\vec{\phi}\right)^{-1}\vec{\phi}^T\vec{t}
+\]
 \end{document}
